@@ -41,7 +41,7 @@ int		read_file(char *filepath, char **data)
     }
   else if (st.st_size == 0)
     {
-      dprintf(2, "file seems empty\n");
+      fprintf(stderr, "file seems empty\n");
       return (1);
     }
   fd = open(filepath, O_RDONLY);

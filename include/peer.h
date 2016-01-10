@@ -38,6 +38,6 @@ typedef struct		s_peer
 void		peer_init(t_peer *peer);
 t_peer		*peer_alloc();
 void		peer_clear(t_peer *peer);
-int		peer_load(t_peer *peer, char *peers_dirpath, char *peer_uid);
+int		peer_load(t_peer *peer, const char *peers_dirpath, const char *peer_uid);
 
 #endif

@@ -32,7 +32,7 @@ int		hsn_node_load_credentials(t_hsn_node *node, const char *credentials_dirpath
 		       CREDENTIALS_LOAD_BOTH_KEYS,
 		       "password") != 0) /* TODO: handle passwords */
     {
-      dprintf(2, "Failed to load credentials\n");
+      fprintf(stderr, "Failed to load credentials\n");
       return (1);
     }
   return (0);

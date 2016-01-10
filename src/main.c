@@ -34,11 +34,11 @@ int		main()
 		     HSN_DEFAULT_PEERS_DIRPATH,
 		     HSN_DEFAULT_PORT) != 0)
     {
-      dprintf(2, "Failed to setup a HSN node. Aborting.\n");
+      fprintf(stderr, "Failed to setup a HSN node. Aborting.\n");
       return (EXIT_FAILURE);
     }
-  dprintf(2, "HSN node successfully setup.\npid\t: %d\nport\t: %d\n", getpid(), HSN_DEFAULT_PORT);
+  fprintf(stderr, "HSN node successfully setup.\npid\t: %d\nport\t: %d\n", getpid(), HSN_DEFAULT_PORT);
   hsn_node_clean(&hsn_node);
-  dprintf(2, "Goodbye\n");
+  fprintf(stderr, "Goodbye\n");
   return (EXIT_SUCCESS);
 }

@@ -36,7 +36,7 @@ static int	_import_private_key(t_credentials *credentials,
   sprintf(buf, "%s/id_rsa", credentials_dirpath);
   if (access(buf, R_OK) != 0)
     {
-      dprintf(2, "Failed to access private key (%s)\n", strerror(errno));
+      fprintf(stderr, "Failed to access private key (%s)\n", strerror(errno));
       return (1);
     }
   if (ssh_pki_import_privkey_file(buf,
@@ -45,7 +45,7 @@ static int	_import_private_key(t_credentials *credentials,
 				  NULL,
 				  &(credentials->private_key)) != SSH_OK)
     {
-      dprintf(2, "Failed to import private key (incorrect password or invalid file)\n");
+      fprintf(stderr, "Failed to import private key (incorrect password or invalid file)\n");
       return (1);
     }
   return (0);
@@ -58,12 +58,12 @@ static int	_import_public_key(t_credentials *credentials,
   sprintf(buf, "%s/id_rsa.pub", credentials_dirpath);
   if (access(buf, R_OK) != 0)
     {
-      dprintf(2, "Failed to access public key (%s)\n", strerror(errno));
+      fprintf(stderr, "Failed to access public key (%s)\n", strerror(errno));
       return (1);
     }
   if (ssh_pki_import_pubkey_file(buf, &(credentials->public_key)) != SSH_OK)
     {
-      dprintf(2, "Failed to import public key\n");
+      fprintf(stderr, "Failed to import public key\n");
       ssh_key_free(credentials->public_key);
       return (1);
     }
@@ -74,7 +74,7 @@ static int	_check_mode_bits(int mode)
 {
   if (mode == 0 || (mode & ~CREDENTIALS_LOAD_BOTH_KEYS) != 0)
     {
-      dprintf(2, "Invalid credentials loading mode\n");
+      fprintf(stderr, "Invalid credentials loading mode\n");
       return (1);
     }
   return (0);

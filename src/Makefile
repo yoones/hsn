@@ -38,6 +38,7 @@ SRCS		=	main.c				\
 
 OBJS		=	$(SRCS:.c=.o)
 
+CFLAGS		+=	--std=c99
 CFLAGS		+=	-W -Wall -Wextra
 CFLAGS		+=	-g
 CFLAGS		+=	-I . -I ../include
