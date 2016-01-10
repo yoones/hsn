@@ -45,7 +45,7 @@ static int	_import_private_key(t_credentials *credentials,
 				  NULL,
 				  &(credentials->private_key)) != SSH_OK)
     {
-      dprintf(2, "Failed to import private key\n");
+      dprintf(2, "Failed to import private key (incorrect password or invalid file)\n");
       return (1);
     }
   return (0);
