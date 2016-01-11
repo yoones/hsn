@@ -36,7 +36,7 @@ typedef struct		s_peer
   t_ssh_client		ssh_client;
 }			t_peer;
 
-void		peer_init(t_peer *peer);
+int		peer_init(t_peer *peer);
 t_peer		*peer_alloc();
 void		peer_clean(t_peer *peer);
 void		peer_free(t_peer *peer);

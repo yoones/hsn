@@ -21,18 +21,11 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "peer.h"
-#include "xfunctions.h"
+#include "ssh_client.h"
+#include "tools.h"
 
-t_peer		*peer_alloc()
+void		ssh_client_free(t_ssh_client *ssh_client)
 {
-  t_peer	*peer;
-
-  peer = xmalloc(sizeof(t_peer));
-  if (!peer || peer_init(peer) != 0)
-    {
-      free(peer);
-      return (NULL);
-    }
-  return (peer);
+  ssh_client_clean(ssh_client);
+  free(ssh_client);
 }

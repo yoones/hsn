@@ -37,13 +37,9 @@ int		main()
       fprintf(stderr, "Failed to setup a HSN node. Aborting.\n");
       return (EXIT_FAILURE);
     }
-  fprintf(stderr,
-	  "HSN node successfully setup.\n"
-	  "* pid\t: %d\n"
-	  "* port\t: %d\n"
-	  "* peers\t: %d\n"
-	  "\n",
-	  getpid(), HSN_DEFAULT_PORT, hsn_node.peers.size);
+  fprintf(stderr, "HSN node successfully setup.\n\n");
+  hsn_node_print_status(&hsn_node);
+  fprintf(stderr, "\n");
   hsn_node_clean(&hsn_node);
   ssh_finalize();
   fprintf(stderr, "Goodbye\n");

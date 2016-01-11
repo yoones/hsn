@@ -25,11 +25,13 @@
 #include "tools.h"
 #include "address.h"
 
-void		peer_init(t_peer *peer)
+int		peer_init(t_peer *peer)
 {
   peer->uid = NULL;
   peer->name = NULL;
   credentials_init(&(peer->credentials));
   list_init(&(peer->addresses), (t_list_data_free *)address_free, NULL);
-  /* ssh_client_init(); */
+  if (ssh_client_init(&(peer->ssh_client)) != 0)
+    return (1);
+  return (0);
 }

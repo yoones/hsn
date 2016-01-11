@@ -19,20 +19,36 @@
 ** or see <http://www.gnu.org/licenses/>.
 */
 
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include "hsn_node.h"
 #include "peer.h"
-#include "xfunctions.h"
 
-t_peer		*peer_alloc()
+void		hsn_node_print_status(t_hsn_node *hsn_node)
 {
+  int		nb_peers_connexions;
+  t_lnode	*w;
   t_peer	*peer;
 
-  peer = xmalloc(sizeof(t_peer));
-  if (!peer || peer_init(peer) != 0)
+  nb_peers_connexions = 0;
+  for (w = hsn_node->peers.head; w; w = w->next)
     {
-      free(peer);
-      return (NULL);
+      peer = w->data;
+      if (peer->ssh_client.address)
+	nb_peers_connexions++;
     }
-  return (peer);
+  fprintf(stderr,
+	  "[HSN node status]\n"
+	  "| pid   : % 6d\n"
+	  "| port  : % 6d\n"
+	  "| peers : % 6d\n"
+	  "|\n"
+	  "| connected to %d peers\n"
+	  "| server running : %s\n"
+	  "+---\n",
+	  getpid(),
+	  HSN_DEFAULT_PORT,
+	  hsn_node->peers.size,
+	  nb_peers_connexions,
+	  (hsn_node->ssh_server.session != NULL ? "yes" : "no"));
 }

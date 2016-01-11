@@ -31,6 +31,7 @@ typedef struct	s_hsn_node
   t_credentials	credentials;
   t_list	peers;
   t_ssh_server	ssh_server;
+  int		ssh_verbosity;
 }		t_hsn_node;
 
 void		hsn_node_init(t_hsn_node *node);
@@ -59,5 +60,6 @@ int		hsn_node_setup(t_hsn_node *node,
 # define HSN_DEFAULT_CREDENTIALS_DIRPATH	"./data/self/credentials/"
 # define HSN_DEFAULT_PEERS_LIST_FILEPATH	"./data/peers/peers.list"
 # define HSN_DEFAULT_PEERS_DIRPATH		"./data/peers/"
+# define HSN_DEFAULT_SSH_VERBOSITY		SSH_LOG_PROTOCOL
 
 #endif

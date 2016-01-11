@@ -21,18 +21,15 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "peer.h"
+#include "ssh_client.h"
 #include "xfunctions.h"
 
-t_peer		*peer_alloc()
+t_ssh_client	*ssh_client_alloc()
 {
-  t_peer	*peer;
+  t_ssh_client	*ssh_client;
 
-  peer = xmalloc(sizeof(t_peer));
-  if (!peer || peer_init(peer) != 0)
-    {
-      free(peer);
-      return (NULL);
-    }
-  return (peer);
+  ssh_client = xmalloc(sizeof(t_ssh_client));
+  if (ssh_client)
+    ssh_client_init(ssh_client);
+  return (ssh_client);
 }

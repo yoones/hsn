@@ -49,6 +49,11 @@ SRCS		=	\
 			peer_free.c			\
 			peer_init.c			\
 			peer_load_credentials.c		\
+			ssh_client_alloc.c		\
+			ssh_client_clean.c		\
+			ssh_client_free.c		\
+			ssh_client_init.c		\
+			ssh_client_try_connect.c	\
 			tools/split.c			\
 			tools/read_file.c		\
 			tools/list.c			\
