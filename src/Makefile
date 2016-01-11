@@ -33,6 +33,7 @@ SRCS		=	\
 			credentials_free.c		\
 			credentials_init.c		\
 			credentials_load.c		\
+			hsn_node_alloc.c		\
 			hsn_node_clean.c		\
 			hsn_node_free.c			\
 			hsn_node_init.c			\
