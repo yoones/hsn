@@ -21,10 +21,11 @@
 
 #include <stdio.h>
 #include "hsn_node.h"
+#include "peer.h"
 
 void		hsn_node_init(t_hsn_node *node)
 {
   credentials_init(&(node->credentials));
-  list_init(&(node->peers), NULL, NULL); /* TODO: set free_fptr */
+  list_init(&(node->peers), (t_list_data_free *)peer_free, NULL);
   /* ssh_server_init(&(node->ssh_server)); */
 }

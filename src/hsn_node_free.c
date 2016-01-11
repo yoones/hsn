@@ -19,14 +19,14 @@
 ** or see <http://www.gnu.org/licenses/>.
 */
 
-#include <stdlib.h>
 #include <stdio.h>
-#include "address.h"
-#include "tools.h"
+#include <stdlib.h>
 #include "hsn_node.h"
+#include "credentials.h"
+#include "list.h"
 
-void		address_clean(t_address *address)
+void		hsn_node_free(t_hsn_node *node)
 {
-  free(address->addr);
-  address_init(address);
+  hsn_node_clean(node);
+  free(node);
 }

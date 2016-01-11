@@ -30,7 +30,8 @@ typedef struct	s_address
 
 void		address_init(t_address *address);
 t_address	*address_alloc();
-void		address_clear(t_address *address);
+void		address_clean(t_address *address);
+void		address_free(t_address *address);
 int		address_fill(t_address *address, const char *source); /* source = "addr:port" */
 
 #endif

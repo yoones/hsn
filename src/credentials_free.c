@@ -20,13 +20,11 @@
 */
 
 #include <stdlib.h>
-#include <stdio.h>
-#include "address.h"
-#include "tools.h"
-#include "hsn_node.h"
+#include <libssh/libssh.h>
+#include "credentials.h"
 
-void		address_clean(t_address *address)
+void		credentials_free(t_credentials *credentials)
 {
-  free(address->addr);
-  address_init(address);
+  credentials_clean(credentials);
+  free(credentials);
 }

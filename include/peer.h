@@ -39,6 +39,7 @@ typedef struct		s_peer
 void		peer_init(t_peer *peer);
 t_peer		*peer_alloc();
 void		peer_clean(t_peer *peer);
+void		peer_free(t_peer *peer);
 int		peer_fill(t_peer *peer, const char *entry); /* "uid;name;addr1:port1,addr2:port2" */
 int		peer_load_credentials(t_peer *peer, const char *peers_dirpath);
 

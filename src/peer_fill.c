@@ -35,14 +35,15 @@ static int	_extract_peer_addresses(t_peer *peer, char **addresses)
       if (addresses[i][0] == '\0')
 	continue ;
       addr = address_alloc();
-      if (!addr)
+      if (!addr
+	  || address_fill(addr, addresses[i]) != 0
+	  || list_push_back(&(peer->addresses), addr) != 0)
 	{
-	  list_clear(&(peer->addresses));
-	  return (1);
-	}
-      if (address_fill(addr, addresses[i]) != 0)
-	{
-	  free(addr);
+	  if (addr)
+	    {
+	      address_clean(addr);
+	      free(addr);
+	    }
 	  list_clear(&(peer->addresses));
 	  return (1);
 	}
@@ -81,6 +82,8 @@ int		peer_fill(t_peer *peer, const char *entry)
       free_wordtab(peer_info);
       return (1);
     }
-  free(addresses);
+  free_wordtab(addresses);
+  free(peer_info[2]);
+  free(peer_info);
   return (0);
 }

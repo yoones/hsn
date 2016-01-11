@@ -21,12 +21,11 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "address.h"
+#include "peer.h"
 #include "tools.h"
-#include "hsn_node.h"
 
-void		address_clean(t_address *address)
+void		peer_free(t_peer *peer)
 {
-  free(address->addr);
-  address_init(address);
+  peer_clean(peer);
+  free(peer);
 }

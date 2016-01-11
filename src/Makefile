@@ -26,12 +26,15 @@ SRCS		=	\
 			address_alloc.c			\
 			address_clean.c			\
 			address_fill.c			\
+			address_free.c			\
 			address_init.c			\
 			credentials_alloc.c		\
 			credentials_clean.c		\
+			credentials_free.c		\
 			credentials_init.c		\
 			credentials_load.c		\
 			hsn_node_clean.c		\
+			hsn_node_free.c			\
 			hsn_node_init.c			\
 			hsn_node_load_credentials.c	\
 			hsn_node_load_peers.c		\
@@ -42,6 +45,7 @@ SRCS		=	\
 			peer_alloc.c			\
 			peer_clean.c			\
 			peer_fill.c			\
+			peer_free.c			\
 			peer_init.c			\
 			peer_load_credentials.c		\
 			tools/split.c			\

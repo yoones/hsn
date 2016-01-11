@@ -45,6 +45,7 @@ int		main()
 	  "\n",
 	  getpid(), HSN_DEFAULT_PORT, hsn_node.peers.size);
   hsn_node_clean(&hsn_node);
+  ssh_finalize();
   fprintf(stderr, "Goodbye\n");
   return (EXIT_SUCCESS);
 }

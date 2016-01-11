@@ -44,7 +44,7 @@ static int	_extract_peers_from_list(t_hsn_node *node, char **peers_list)
 	      peer_clean(peer);
 	      free(peer);
 	    }
-	  list_clear(&(node->peers));
+	  hsn_node_unload_peers(node);
 	  return (1);
 	}
     }
@@ -130,7 +130,7 @@ int		hsn_node_load_peers(t_hsn_node *node,
   if (!peers_list)
     return (1);
   ret = _extract_peers_from_list(node, peers_list);
-  free(peers_list);
+  free_wordtab(peers_list);
   if (ret != 0)
     return (1);
   if (_check_peers_uid_uniqueness(&(node->peers)) != 0

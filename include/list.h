@@ -99,7 +99,7 @@ t_list		*list_create(t_list_data_free *f_free,
 			     t_list_data_cmp *f_cmp);
 
 /**
- * @brief Pops all nodes in the list. If f_free is set, it is called on each node's 'data' before freeing the node.
+ * @brief Pops all nodes in the list. If f_free is set, it is called on each node's 'data' before freeing the node. It does *not* call free() on the data.
  *
  * Exemples:
  *

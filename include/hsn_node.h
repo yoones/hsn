@@ -36,6 +36,7 @@ typedef struct	s_hsn_node
 void		hsn_node_init(t_hsn_node *node);
 t_hsn_node	*hsn_node_alloc();
 void		hsn_node_clean(t_hsn_node *node);
+void		hsn_node_free(t_hsn_node *node);
 int		hsn_node_load_credentials(t_hsn_node *node,
 					  const char *credentials_dirpath);
 void		hsn_node_unload_credentials(t_hsn_node *node);

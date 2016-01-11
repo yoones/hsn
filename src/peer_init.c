@@ -23,12 +23,13 @@
 #include <stdio.h>
 #include "peer.h"
 #include "tools.h"
+#include "address.h"
 
 void		peer_init(t_peer *peer)
 {
   peer->uid = NULL;
   peer->name = NULL;
   credentials_init(&(peer->credentials));
-  list_init(&(peer->addresses), NULL, NULL); /* TODO: set free fptr */
+  list_init(&(peer->addresses), (t_list_data_free *)address_free, NULL);
   /* ssh_client_init(); */
 }

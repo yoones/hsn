@@ -25,8 +25,8 @@
 #include "tools.h"
 #include "hsn_node.h"
 
-void		address_clean(t_address *address)
+void		address_free(t_address *address)
 {
-  free(address->addr);
-  address_init(address);
+  address_clean(address);
+  free(address);
 }

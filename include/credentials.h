@@ -35,6 +35,7 @@ typedef struct	s_credentials
 void		credentials_init(t_credentials *credentials);
 t_credentials	*credentials_alloc();
 void		credentials_clean(t_credentials *credentials);
+void		credentials_free(t_credentials *credentials);
 int		credentials_load(t_credentials *credentials,
 				 const char *credentials_dirpath,
 				 int mode,
