@@ -19,27 +19,17 @@
 ** or see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef PEER_H_
-# define PEER_H_
+#include <stdlib.h>
+#include <stdio.h>
+#include "peer.h"
+#include "xfunctions.h"
 
-# include "list.h"
-# include "address.h"
-# include "ssh_client.h"
-# include "credentials.h"
-
-typedef struct		s_peer
+t_peer		*peer_alloc()
 {
-  char			*uid;
-  char			*name;
-  t_credentials		credentials;
-  t_list		addresses;
-  t_ssh_client		ssh_client;
-}			t_peer;
+  t_peer	*peer;
 
-void		peer_init(t_peer *peer);
-t_peer		*peer_alloc();
-void		peer_clean(t_peer *peer);
-int		peer_fill(t_peer *peer, const char *entry); /* "uid;name;addr1:port1,addr2:port2" */
-int		peer_load_credentials(t_peer *peer, const char *peers_dirpath);
-
-#endif
+  peer = xmalloc(sizeof(t_peer));
+  if (peer)
+    peer_init(peer);
+  return (peer);
+}

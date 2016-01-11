@@ -38,11 +38,11 @@ t_hsn_node	*hsn_node_alloc();
 void		hsn_node_clean(t_hsn_node *node);
 int		hsn_node_load_credentials(t_hsn_node *node,
 					  const char *credentials_dirpath);
-int		hsn_node_unload_credentials(t_hsn_node *node);
+void		hsn_node_unload_credentials(t_hsn_node *node);
 int		hsn_node_load_peers(t_hsn_node *node,
 				    const char *peers_list_filepath,
 				    const char *peers_dirpath);
-int		hsn_node_unload_peers(t_hsn_node *node);
+void		hsn_node_unload_peers(t_hsn_node *node);
 int		hsn_node_connect_to_peers(t_hsn_node *node);
 int		hsn_node_disconnect_from_peers(t_hsn_node *node);
 int		hsn_node_start_server(t_hsn_node *node, int port);
@@ -56,7 +56,7 @@ int		hsn_node_setup(t_hsn_node *node,
 
 # define HSN_DEFAULT_PORT			0x7c0 /* 1984 */
 # define HSN_DEFAULT_CREDENTIALS_DIRPATH	"./data/self/credentials/"
-# define HSN_DEFAULT_PEERS_LIST_FILEPATH	"./data/self/peers.list"
+# define HSN_DEFAULT_PEERS_LIST_FILEPATH	"./data/peers/peers.list"
 # define HSN_DEFAULT_PEERS_DIRPATH		"./data/peers/"
 
 #endif

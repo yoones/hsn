@@ -22,14 +22,27 @@
 CC		=	gcc
 NAME		=	hsn
 
-SRCS		=	main.c				\
+SRCS		=	\
+			address_alloc.c			\
+			address_clean.c			\
+			address_fill.c			\
+			address_init.c			\
 			credentials_clean.c		\
 			credentials_init.c		\
 			credentials_load.c		\
 			hsn_node_clean.c		\
 			hsn_node_init.c			\
 			hsn_node_load_credentials.c	\
+			hsn_node_load_peers.c		\
 			hsn_node_setup.c		\
+			hsn_node_unload_credentials.c	\
+			hsn_node_unload_peers.c		\
+			main.c				\
+			peer_alloc.c			\
+			peer_clean.c			\
+			peer_fill.c			\
+			peer_init.c			\
+			peer_load_credentials.c		\
 			tools/split.c			\
 			tools/read_file.c		\
 			tools/list.c			\

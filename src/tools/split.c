@@ -23,7 +23,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-static int	_is_sep(char c, char *sep)
+static int	_is_sep(const char c, const char *sep)
 {
   int		i;
 
@@ -35,7 +35,7 @@ static int	_is_sep(char c, char *sep)
   return (sep[i] == c ? 1 : 0);
 }
 
-static int	_count_words(char *data, char *sep)
+static int	_count_words(const char *data, const char *sep)
 {
   int		i;
   int		nb;
@@ -51,7 +51,7 @@ static int	_count_words(char *data, char *sep)
   return (nb);
 }
 
-static void	_skip_word(char **data, char *sep)
+static void	_skip_word(const char **data, const char *sep)
 {
   while (**data && _is_sep(**data, sep) == 0)
     (*data)++;
@@ -59,7 +59,7 @@ static void	_skip_word(char **data, char *sep)
     (*data)++;
 }
 
-static char	*_extract_word(char *data, char *sep)
+static char	*_extract_word(const char *data, const char *sep)
 {
   char		*word;
   int		len;
@@ -77,7 +77,7 @@ static char	*_extract_word(char *data, char *sep)
   return (word);
 }
 
-char		**split(char *data, char *sep)
+char		**split(const char *data, const char *sep)
 {
   int		nb_words;
   char		**words;

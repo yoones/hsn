@@ -19,31 +19,43 @@
 ** or see <http://www.gnu.org/licenses/>.
 */
 
+#include <stdlib.h>
 #include <stdio.h>
+#include "address.h"
+#include "tools.h"
 #include "hsn_node.h"
 
-int		hsn_node_setup(t_hsn_node *node,
-			       const char *credentials_dirpath,
-			       const char *peers_list_filepath,
-			       const char *peers_dirpath,
-			       __attribute__((unused)) int port)
+int		address_fill(t_address *address, const char *source)
 {
-  if (hsn_node_load_credentials(node, credentials_dirpath) != 0)
-    goto err_load_credentials;
-  if (hsn_node_load_peers(node, peers_list_filepath, peers_dirpath) != 0)
-    goto err_load_peers;
-  /* if (hsn_node_connect_to_peers(node) != 0) */
-  /*   goto err_connect_to_peers; */
-  /* if (hsn_node_start_server(node, port) != 0) */
-  /*   goto err_start_server; */
-  return (0);
+  char		**fields;
 
-  /* err_start_server: */
-  /*  hsn_node_disconnect_from_peers(node); */
-  /* err_connect_to_peers: */
-  /*  hsn_node_unload_peers(node); */
- err_load_peers:
-  hsn_node_unload_credentials(node);
- err_load_credentials:
-  return (1);
+  if (source[0] == '\0')
+    return (1);
+  fields = split(source, ":");
+  if (!fields)
+    return (1);
+  switch (count_wordtab_words(fields))
+    {
+    case (1):
+      address->addr = fields[0];
+      address->port = HSN_DEFAULT_PORT;
+      break ;
+    case (2):
+      address->addr = fields[0];
+      address->port = atoi(fields[1]);
+      if (address->port < 1)
+	{
+	  fprintf(stderr, "Invalid peer entry found (port < 1)\n");
+	  free_wordtab(fields);
+	  return (1);
+	}
+      free(fields[1]);
+      break ;
+    default:
+      fprintf(stderr, "Invalid peer entry found (more than 2 fields found for address)\n");
+      free_wordtab(fields);
+      return (1);
+    }
+  free(fields);
+  return (0);
 }

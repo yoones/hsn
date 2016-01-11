@@ -22,12 +22,12 @@
 #ifndef TOOLS_H_
 # define TOOLS_H_
 
-int		read_file(char *filepath, char **data);
+int		read_file(const char *filepath, char **data);
 
-char		**split(char *data, char *sep);
+char		**split(const char *data, const char *sep);
 void		free_wordtab(char **wt);
 int		count_wordtab_words(char **wt);
 
-int		find_char(char *str, char *look_for);
+int		find_char(const char *str, const char *look_for);
 
 #endif

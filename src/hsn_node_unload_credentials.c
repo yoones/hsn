@@ -19,27 +19,13 @@
 ** or see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef PEER_H_
-# define PEER_H_
+#include <stdio.h>
+#include <string.h>
+#include <libssh/libssh.h>
+#include "hsn_node.h"
+#include "credentials.h"
 
-# include "list.h"
-# include "address.h"
-# include "ssh_client.h"
-# include "credentials.h"
-
-typedef struct		s_peer
+void		hsn_node_unload_credentials(t_hsn_node *node)
 {
-  char			*uid;
-  char			*name;
-  t_credentials		credentials;
-  t_list		addresses;
-  t_ssh_client		ssh_client;
-}			t_peer;
-
-void		peer_init(t_peer *peer);
-t_peer		*peer_alloc();
-void		peer_clean(t_peer *peer);
-int		peer_fill(t_peer *peer, const char *entry); /* "uid;name;addr1:port1,addr2:port2" */
-int		peer_load_credentials(t_peer *peer, const char *peers_dirpath);
-
-#endif
+  credentials_clean(&(node->credentials));
+}
