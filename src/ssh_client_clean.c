@@ -26,6 +26,7 @@
 
 void		ssh_client_clean(t_ssh_client *ssh_client)
 {
+  ssh_disconnect(ssh_client->session);
   ssh_free(ssh_client->session);
   ssh_client_init(ssh_client);
 }

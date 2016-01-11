@@ -34,11 +34,13 @@ SRCS		=	\
 			credentials_init.c		\
 			credentials_load.c		\
 			hsn_node_alloc.c		\
+			hsn_node_connect_to_peers.c	\
 			hsn_node_clean.c		\
 			hsn_node_free.c			\
 			hsn_node_init.c			\
 			hsn_node_load_credentials.c	\
 			hsn_node_load_peers.c		\
+			hsn_node_print_status.c		\
 			hsn_node_setup.c		\
 			hsn_node_unload_credentials.c	\
 			hsn_node_unload_peers.c		\

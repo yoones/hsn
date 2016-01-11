@@ -28,7 +28,6 @@
 typedef struct		s_ssh_server
 {
   int			port;
-  int			verbosity;
   ssh_session		session;
 }			t_ssh_server;
 

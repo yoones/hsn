@@ -31,10 +31,12 @@ typedef struct		s_ssh_client
   ssh_session		session;
 }			t_ssh_client;
 
-void		ssh_client_init(t_ssh_client *ssh_client);
+int		ssh_client_init(t_ssh_client *ssh_client);
 t_ssh_client	*ssh_client_alloc();
 void		ssh_client_clean(t_ssh_client *ssh_client);
 void		ssh_client_free(t_ssh_client *ssh_client);
-int		ssh_client_try_connect(t_ssh_client *ssh_client, t_address *address);
+int		ssh_client_try_connect(t_ssh_client *ssh_client,
+				       t_address *address,
+				       int *verbosity);
 
 #endif

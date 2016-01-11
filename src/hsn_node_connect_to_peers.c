@@ -20,14 +20,38 @@
 */
 
 #include <stdio.h>
+#include <libssh/libssh.h>
 #include "hsn_node.h"
 #include "peer.h"
-/* #include "ssh_server.h" */
+#include "xfunctions.h"
+#include "list.h"
+#include "ssh_client.h"
 
-void		hsn_node_init(t_hsn_node *node)
+int		hsn_node_connect_to_peers(t_hsn_node *node)
 {
-  credentials_init(&(node->credentials));
-  list_init(&(node->peers), (t_list_data_free *)peer_free, NULL);
-  ssh_server_init(&(node->ssh_server));
-  node->ssh_verbosity = HSN_DEFAULT_SSH_VERBOSITY;
+  t_lnode	*w;
+  t_peer	*peer;
+  t_lnode	*waddr;
+  t_address	*address;
+
+  for (w = node->peers.head; w; w = w->next)
+    {
+      peer = w->data;
+      /* Skip peer if not fully loaded/ready */
+      if (peer->credentials.public_key == NULL
+	  || peer->credentials.public_key_hash == NULL)
+	continue ;
+      /* Skip peer if already connected */
+      if (peer->ssh_client.address != NULL)
+	continue ;
+      for (waddr = peer->addresses.head; waddr; waddr = waddr->next)
+	{
+	  address = waddr->data;
+	  if (ssh_client_try_connect(&(peer->ssh_client),
+				     address,
+				     &(node->ssh_verbosity)) == 0)
+	    break ;
+	}
+    }
+  return (0);
 }

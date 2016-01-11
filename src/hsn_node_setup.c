@@ -32,16 +32,16 @@ int		hsn_node_setup(t_hsn_node *node,
     goto err_load_credentials;
   if (hsn_node_load_peers(node, peers_list_filepath, peers_dirpath) != 0)
     goto err_load_peers;
-  /* if (hsn_node_connect_to_peers(node) != 0) */
-  /*   goto err_connect_to_peers; */
+  if (hsn_node_connect_to_peers(node) != 0)
+    goto err_connect_to_peers;
   /* if (hsn_node_start_server(node, port) != 0) */
   /*   goto err_start_server; */
   return (0);
 
   /* err_start_server: */
   /*  hsn_node_disconnect_from_peers(node); */
-  /* err_connect_to_peers: */
-  /*  hsn_node_unload_peers(node); */
+ err_connect_to_peers:
+  hsn_node_unload_peers(node);
  err_load_peers:
   hsn_node_unload_credentials(node);
  err_load_credentials:

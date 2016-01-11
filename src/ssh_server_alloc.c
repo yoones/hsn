@@ -19,15 +19,17 @@
 ** or see <http://www.gnu.org/licenses/>.
 */
 
+#include <stdlib.h>
 #include <stdio.h>
-#include "hsn_node.h"
-#include "peer.h"
-/* #include "ssh_server.h" */
+#include "ssh_server.h"
+#include "xfunctions.h"
 
-void		hsn_node_init(t_hsn_node *node)
+t_ssh_server	*ssh_server_alloc()
 {
-  credentials_init(&(node->credentials));
-  list_init(&(node->peers), (t_list_data_free *)peer_free, NULL);
-  ssh_server_init(&(node->ssh_server));
-  node->ssh_verbosity = HSN_DEFAULT_SSH_VERBOSITY;
+  t_ssh_server	*ssh_server;
+
+  ssh_server = xmalloc(sizeof(t_ssh_server));
+  if (ssh_server)
+    ssh_server_init(ssh_server);
+  return (ssh_server);
 }

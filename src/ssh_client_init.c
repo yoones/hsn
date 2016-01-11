@@ -25,8 +25,11 @@
 #include "tools.h"
 #include "address.h"
 
-void		ssh_client_init(t_ssh_client *ssh_client)
+int		ssh_client_init(t_ssh_client *ssh_client)
 {
   ssh_client->address = NULL;
-  ssh_client->session = NULL;
+  ssh_client->session = ssh_new();
+  if (ssh_client->session == NULL)
+    return (1);
+  return (0);
 }
