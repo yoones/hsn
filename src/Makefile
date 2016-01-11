@@ -27,6 +27,7 @@ SRCS		=	\
 			address_clean.c			\
 			address_fill.c			\
 			address_init.c			\
+			credentials_alloc.c		\
 			credentials_clean.c		\
 			credentials_init.c		\
 			credentials_load.c		\

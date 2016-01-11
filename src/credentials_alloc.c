@@ -19,29 +19,15 @@
 ** or see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef CREDENTIALS_H_
-# define CREDENTIALS_H_
+#include "credentials.h"
+#include "xfunctions.h"
 
-# include <libssh/libssh.h>
-
-typedef struct	s_credentials
+t_credentials	*credentials_alloc()
 {
-  ssh_key	public_key;
-  ssh_key	private_key;
-  unsigned char	*public_key_hash;
-  size_t	public_key_hash_len;
-}		t_credentials;
+  t_credentials	*credentials;
 
-void		credentials_init(t_credentials *credentials);
-t_credentials	*credentials_alloc();
-void		credentials_clean(t_credentials *credentials);
-int		credentials_load(t_credentials *credentials,
-				 const char *credentials_dirpath,
-				 int mode,
-				 const char *password);
-
-# define CREDENTIALS_LOAD_PRIVATE_KEY	(1 << 0)
-# define CREDENTIALS_LOAD_PUBLIC_KEY	(1 << 1)
-# define CREDENTIALS_LOAD_BOTH_KEYS	(CREDENTIALS_LOAD_PRIVATE_KEY | CREDENTIALS_LOAD_PUBLIC_KEY)
-
-#endif
+  credentials = xmalloc(sizeof(t_credentials));
+  if (credentials)
+    credentials_init(credentials);
+  return (credentials);
+}

@@ -67,6 +67,15 @@ static int	_import_public_key(t_credentials *credentials,
       ssh_key_free(credentials->public_key);
       return (1);
     }
+  if (ssh_get_public_key_hash(credentials->public_key,
+			      SSH_PUBLICKEY_HASH_SHA1,
+			      &(credentials->public_key_hash),
+			      &(credentials->public_key_hash_len)) != 0)
+    {
+      fprintf(stderr, "Failed to get public key hash\n");
+      ssh_key_free(credentials->public_key);
+      return (1);
+    }
   return (0);
 }
 
