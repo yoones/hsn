@@ -55,7 +55,7 @@ SRCS		=	\
 			ssh_client_clean.c		\
 			ssh_client_free.c		\
 			ssh_client_init.c		\
-			ssh_client_try_connect.c	\
+			ssh_client_connect.c		\
 			tools/split.c			\
 			tools/read_file.c		\
 			tools/list.c			\

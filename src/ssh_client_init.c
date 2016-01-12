@@ -28,6 +28,7 @@
 int		ssh_client_init(t_ssh_client *ssh_client)
 {
   ssh_client->address = NULL;
+  credentials_init(&(ssh_client->credentials));
   ssh_client->session = ssh_new();
   if (ssh_client->session == NULL)
     return (1);

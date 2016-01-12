@@ -29,6 +29,6 @@ void		hsn_node_clean(t_hsn_node *node)
 {
   credentials_clean(&(node->credentials));
   list_clear(&(node->peers));
-  /* ssh_server cleanup */
+  /* ssh_server_clean(&(node->ssh_server)); */
   hsn_node_init(node);
 }

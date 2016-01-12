@@ -31,4 +31,9 @@ typedef struct		s_ssh_server
   ssh_session		session;
 }			t_ssh_server;
 
+int		ssh_server_init(t_ssh_server *ssh_server);
+t_ssh_server	*ssh_server_alloc();
+void		ssh_server_clean(t_ssh_server *ssh_server);
+void		ssh_server_free(t_ssh_server *ssh_server);
+
 #endif

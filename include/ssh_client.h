@@ -24,10 +24,12 @@
 
 # include <libssh/libssh.h>
 # include "address.h"
+# include "credentials.h"
 
 typedef struct		s_ssh_client
 {
   t_address		*address;
+  t_credentials		credentials;
   ssh_session		session;
 }			t_ssh_client;
 
@@ -35,8 +37,13 @@ int		ssh_client_init(t_ssh_client *ssh_client);
 t_ssh_client	*ssh_client_alloc();
 void		ssh_client_clean(t_ssh_client *ssh_client);
 void		ssh_client_free(t_ssh_client *ssh_client);
-int		ssh_client_try_connect(t_ssh_client *ssh_client,
-				       t_address *address,
-				       int *verbosity);
+
+/* Cross reference (ugly) fix */
+struct s_peer;
+typedef struct s_peer t_peer;
+
+int		ssh_client_connect(t_peer *peer,
+				   t_address *address,
+				   int *verbosity);
 
 #endif

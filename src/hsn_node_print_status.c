@@ -44,11 +44,12 @@ void		hsn_node_print_status(t_hsn_node *hsn_node)
 	  "| peers : % 6d\n"
 	  "|\n"
 	  "| connected to %d peers\n"
-	  "| server running : %s\n"
+	  /* "| server running : %s\n" */
 	  "+---\n",
 	  getpid(),
 	  HSN_DEFAULT_PORT,
 	  hsn_node->peers.size,
-	  nb_peers_connexions,
-	  (hsn_node->ssh_server.session != NULL ? "yes" : "no"));
+	  nb_peers_connexions
+	  /* (hsn_node->ssh_server.session != NULL ? "yes" : "no") */
+	  );
 }

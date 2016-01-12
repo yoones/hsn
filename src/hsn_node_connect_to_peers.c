@@ -47,9 +47,9 @@ int		hsn_node_connect_to_peers(t_hsn_node *node)
       for (waddr = peer->addresses.head; waddr; waddr = waddr->next)
 	{
 	  address = waddr->data;
-	  if (ssh_client_try_connect(&(peer->ssh_client),
-				     address,
-				     &(node->ssh_verbosity)) == 0)
+	  if (ssh_client_connect(peer,
+				 address,
+				 &(node->ssh_verbosity)) == 0)
 	    break ;
 	}
     }
