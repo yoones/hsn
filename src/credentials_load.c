@@ -24,9 +24,7 @@
 #include <errno.h>
 #include <libssh/libssh.h>
 #include <stdlib.h>
-#include "credentials.h"
-#include "hsn_node.h"
-#include "xfunctions.h"
+#include "hsn.h"
 
 static int	_import_private_key(t_credentials *credentials,
 				    const char *credentials_dirpath,

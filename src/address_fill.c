@@ -21,9 +21,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "address.h"
-#include "tools.h"
-#include "hsn_node.h"
+#include "hsn.h"
 
 int		address_fill(t_address *address, const char *source)
 {

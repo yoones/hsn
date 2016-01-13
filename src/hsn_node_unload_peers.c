@@ -19,8 +19,7 @@
 ** or see <http://www.gnu.org/licenses/>.
 */
 
-#include "hsn_node.h"
-#include "peer.h"
+#include "hsn.h"
 
 void		hsn_node_unload_peers(t_hsn_node *node)
 {

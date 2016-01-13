@@ -21,8 +21,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "ssh_client.h"
-#include "tools.h"
+#include "hsn.h"
 
 void		ssh_client_clean(t_ssh_client *ssh_client)
 {

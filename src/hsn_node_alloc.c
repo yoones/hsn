@@ -20,9 +20,7 @@
 */
 
 #include <stdio.h>
-#include "hsn_node.h"
-#include "peer.h"
-#include "xfunctions.h"
+#include "hsn.h"
 
 t_hsn_node		*hsn_node_alloc()
 {

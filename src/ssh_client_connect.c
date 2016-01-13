@@ -22,10 +22,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <libssh/libssh.h>
-#include "peer.h"
-#include "ssh_client.h"
-#include "tools.h"
-#include "address.h"
+#include "hsn.h"
 
 static int	_authenticate_self(t_peer *peer)
 {

@@ -21,11 +21,7 @@
 
 #include <stdio.h>
 #include <libssh/libssh.h>
-#include "hsn_node.h"
-#include "peer.h"
-#include "xfunctions.h"
-#include "list.h"
-#include "ssh_client.h"
+#include "hsn.h"
 
 int		hsn_node_connect_to_peers(t_hsn_node *node)
 {

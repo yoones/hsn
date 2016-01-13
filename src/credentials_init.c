@@ -20,7 +20,7 @@
 */
 
 #include <string.h>
-#include "credentials.h"
+#include "hsn.h"
 
 void		credentials_init(t_credentials *credentials)
 {

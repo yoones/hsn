@@ -20,13 +20,13 @@
 */
 
 #include <stdio.h>
-#include "hsn_node.h"
+#include "hsn.h"
 
 int		hsn_node_setup(t_hsn_node *node,
 			       const char *credentials_dirpath,
 			       const char *peers_list_filepath,
 			       const char *peers_dirpath,
-			       __attribute__((unused)) int port)
+			       int port)
 {
   if (hsn_node_load_credentials(node, credentials_dirpath) != 0)
     goto err_load_credentials;
@@ -34,12 +34,13 @@ int		hsn_node_setup(t_hsn_node *node,
     goto err_load_peers;
   if (hsn_node_connect_to_peers(node) != 0)
     goto err_connect_to_peers;
-  /* if (hsn_node_start_server(node, port) != 0) */
-  /*   goto err_start_server; */
+  node->ssh_server.port = port;
+  if (ssh_server_start(node) != 0)
+    goto err_start_server;
   return (0);
 
-  /* err_start_server: */
-  /*  hsn_node_disconnect_from_peers(node); */
+ err_start_server:
+  hsn_node_disconnect_from_peers(node);
  err_connect_to_peers:
   hsn_node_unload_peers(node);
  err_load_peers:

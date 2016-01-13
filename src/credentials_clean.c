@@ -22,7 +22,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <libssh/libssh.h>
-#include "credentials.h"
+#include "hsn.h"
 
 void		credentials_clean(t_credentials *credentials)
 {

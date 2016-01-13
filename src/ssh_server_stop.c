@@ -21,11 +21,9 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "ssh_server.h"
-#include "tools.h"
-#include "address.h"
+#include "hsn.h"
 
-int		ssh_server_listen(t_ssh_server *ssh_server)
+int		ssh_server_stop(t_hsn_node *hsn_node)
 {
   /* TODO */
   return (1);

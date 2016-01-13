@@ -22,11 +22,7 @@
 #ifndef ADDRESS_H_
 # define ADDRESS_H_
 
-typedef struct	s_address
-{
-  char		*addr;
-  int		port;
-}		t_address;
+# include "hsn_types.h"
 
 void		address_init(t_address *address);
 t_address	*address_alloc();

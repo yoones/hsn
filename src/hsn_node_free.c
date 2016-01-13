@@ -21,9 +21,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "hsn_node.h"
-#include "credentials.h"
-#include "list.h"
+#include "hsn.h"
 
 void		hsn_node_free(t_hsn_node *node)
 {

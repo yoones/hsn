@@ -22,8 +22,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <libssh/libssh.h>
-#include "hsn_node.h"
-#include "credentials.h"
+#include "hsn.h"
 
 void		hsn_node_unload_credentials(t_hsn_node *node)
 {

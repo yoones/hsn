@@ -22,17 +22,7 @@
 #ifndef CREDENTIALS_H_
 # define CREDENTIALS_H_
 
-# include <libssh/libssh.h>
-
-typedef struct	s_credentials
-{
-  ssh_key	public_key;
-  ssh_key	private_key;
-  unsigned char	*public_key_hash;
-  size_t	public_key_hash_len;
-  char		*public_key_filepath;
-  char		*private_key_filepath;
-}		t_credentials;
+# include "hsn_types.h"
 
 void		credentials_init(t_credentials *credentials);
 t_credentials	*credentials_alloc();

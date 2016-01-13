@@ -21,8 +21,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "peer.h"
-#include "tools.h"
+#include "hsn.h"
 
 void		peer_clean(t_peer *peer)
 {

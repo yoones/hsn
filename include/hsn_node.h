@@ -22,17 +22,7 @@
 #ifndef HSN_NODE_H_
 # define HSN_NODE_H_
 
-# include "list.h"
-# include "credentials.h"
-# include "ssh_server.h"
-
-typedef struct	s_hsn_node
-{
-  t_credentials	credentials;
-  t_list	peers;
-  t_ssh_server	ssh_server;
-  int		ssh_verbosity;
-}		t_hsn_node;
+# include "hsn_types.h"
 
 void		hsn_node_init(t_hsn_node *node);
 t_hsn_node	*hsn_node_alloc();

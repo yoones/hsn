@@ -21,8 +21,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "hsn_node.h"
-#include "peer.h"
+#include "hsn.h"
 
 void		hsn_node_print_status(t_hsn_node *hsn_node)
 {

@@ -22,9 +22,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include "credentials.h"
-#include "peer.h"
-#include "xfunctions.h"
+#include "hsn.h"
 
 int		peer_load_credentials(t_peer *peer, const char *peers_dirpath)
 {

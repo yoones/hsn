@@ -22,9 +22,7 @@
 #include <string.h>
 #include <libssh/libssh.h>
 #include <libssh/server.h>
-#include "ssh_server.h"
-#include "hsn_node.h"
-#include "address.h"
+#include "hsn.h"
 
 int		ssh_server_init(t_ssh_server *ssh_server)
 {

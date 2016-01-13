@@ -21,8 +21,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "ssh_server.h"
-#include "tools.h"
+#include "hsn.h"
 
 void		ssh_server_free(t_ssh_server *ssh_server)
 {

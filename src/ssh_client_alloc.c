@@ -21,8 +21,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "ssh_client.h"
-#include "xfunctions.h"
+#include "hsn.h"
 
 t_ssh_client	*ssh_client_alloc()
 {

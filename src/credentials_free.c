@@ -21,7 +21,7 @@
 
 #include <stdlib.h>
 #include <libssh/libssh.h>
-#include "credentials.h"
+#include "hsn.h"
 
 void		credentials_free(t_credentials *credentials)
 {

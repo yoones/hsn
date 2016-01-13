@@ -22,8 +22,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <libssh/libssh.h>
-#include "hsn_node.h"
-#include "credentials.h"
+#include "hsn.h"
 
 int		hsn_node_load_credentials(t_hsn_node *node, const char *credentials_dirpath)
 {

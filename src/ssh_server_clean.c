@@ -21,7 +21,7 @@
 
 #include <libssh/libssh.h>
 #include <libssh/server.h>
-#include "ssh_server.h"
+#include "hsn.h"
 
 void		ssh_server_clean(t_ssh_server *ssh_server)
 {

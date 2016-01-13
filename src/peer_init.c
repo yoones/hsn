@@ -20,11 +20,7 @@
 */
 
 #include <string.h>
-#include "peer.h"
-#include "credentials.h"
-#include "list.h"
-#include "address.h"
-#include "ssh_client.h"
+#include "hsn.h"
 
 int		peer_init(t_peer *peer)
 {

@@ -19,14 +19,27 @@
 ** or see <http://www.gnu.org/licenses/>.
 */
 
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include "hsn.h"
 
-void		hsn_node_clean(t_hsn_node *node)
+int		ssh_server_start(t_hsn_node *hsn_node)
 {
-  credentials_clean(&(node->credentials));
-  list_clear(&(node->peers));
-  /* ssh_server_clean(&(node->ssh_server)); */
-  hsn_node_init(node);
+  /* if (ssh_bind_options_set(hsn_node->ssh_server.sshbind, */
+  /*			   SSH_BIND_OPTIONS_RSAKEY, */
+  /*			   hsn_node->credentials.private_key_filepath) != 0) */
+  /*   { */
+  /*     fprintf(stderr, "Bind options set failed (%s)\n", */
+  /*	      ssh_get_error(hsn_node->ssh_server.sshbind)); */
+  /*     return (1); */
+  /*   } */
+  /* if (ssh_bind_listen(hsn_node->ssh_server.sshbind) != 0) */
+  /*   { */
+  /*     fprintf(stderr, "Bind listen failed (%s)\n", */
+  /*	      ssh_get_error(hsn_node->ssh_server.sshbind)); */
+  /*     return (1); */
+  /*   } */
+  /* ssh_bind_accept(hsn_node->ssh_server.sshbind, */
+  /*		  hsn_node->ssh_server.session); */
+  return (1);
 }

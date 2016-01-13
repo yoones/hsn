@@ -21,8 +21,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "peer.h"
-#include "xfunctions.h"
+#include "hsn.h"
 
 t_peer		*peer_alloc()
 {

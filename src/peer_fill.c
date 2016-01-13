@@ -21,10 +21,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "hsn_node.h"
-#include "tools.h"
-#include "address.h"
-#include "peer.h"
+#include "hsn.h"
 
 static int	_extract_peer_addresses(t_peer *peer, char **addresses)
 {

@@ -21,9 +21,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "address.h"
-#include "xfunctions.h"
-#include "hsn_node.h"
+#include "hsn.h"
 
 t_address	*address_alloc()
 {

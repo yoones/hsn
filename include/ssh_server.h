@@ -22,20 +22,13 @@
 #ifndef SSH_SERVER_H_
 # define SSH_SERVER_H_
 
-# include <libssh/libssh.h>
-# include <libssh/server.h>
-# include "address.h"
-
-typedef struct		s_ssh_server
-{
-  int			port;
-  ssh_bind		sshbind;
-  ssh_session		session;
-}			t_ssh_server;
+# include "hsn_types.h"
 
 int		ssh_server_init(t_ssh_server *ssh_server);
 t_ssh_server	*ssh_server_alloc();
 void		ssh_server_clean(t_ssh_server *ssh_server);
 void		ssh_server_free(t_ssh_server *ssh_server);
+int		ssh_server_start(t_hsn_node *hsn_node);
+int		ssh_server_stop(t_hsn_node *hsn_node);
 
 #endif

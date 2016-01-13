@@ -22,9 +22,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include "hsn_node.h"
-#include "tools.h"
-#include "peer.h"
+#include "hsn.h"
 
 static int	_extract_peers_from_list(t_hsn_node *node, char **peers_list)
 {

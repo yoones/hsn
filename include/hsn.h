@@ -19,14 +19,18 @@
 ** or see <http://www.gnu.org/licenses/>.
 */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include "hsn.h"
+#ifndef HSN_H_
+# define HSN_H_
 
-void		hsn_node_clean(t_hsn_node *node)
-{
-  credentials_clean(&(node->credentials));
-  list_clear(&(node->peers));
-  /* ssh_server_clean(&(node->ssh_server)); */
-  hsn_node_init(node);
-}
+# include "hsn_types.h"
+# include "address.h"
+# include "credentials.h"
+# include "hsn_node.h"
+# include "list.h"
+# include "peer.h"
+# include "ssh_client.h"
+# include "ssh_server.h"
+# include "tools.h"
+# include "xfunctions.h"
+
+#endif

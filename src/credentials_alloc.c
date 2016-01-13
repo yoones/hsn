@@ -19,8 +19,7 @@
 ** or see <http://www.gnu.org/licenses/>.
 */
 
-#include "credentials.h"
-#include "xfunctions.h"
+#include "hsn.h"
 
 t_credentials	*credentials_alloc()
 {

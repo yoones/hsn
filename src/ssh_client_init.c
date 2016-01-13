@@ -21,9 +21,7 @@
 
 #include <string.h>
 #include <libssh/libssh.h>
-#include "ssh_client.h"
-#include "credentials.h"
-#include "address.h"
+#include "hsn.h"
 
 int		ssh_client_init(t_ssh_client *ssh_client)
 {

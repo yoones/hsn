@@ -22,19 +22,7 @@
 #ifndef PEER_H_
 # define PEER_H_
 
-# include "list.h"
-# include "address.h"
-# include "ssh_client.h"
-# include "credentials.h"
-
-typedef struct		s_peer
-{
-  char			*uid;
-  char			*name;
-  t_credentials		credentials;
-  t_list		addresses;
-  t_ssh_client		ssh_client;
-}			t_peer;
+# include "hsn_types.h"
 
 int		peer_init(t_peer *peer);
 t_peer		*peer_alloc();

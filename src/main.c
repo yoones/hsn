@@ -21,7 +21,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "hsn_node.h"
+#include "hsn.h"
 
 int		main()
 {

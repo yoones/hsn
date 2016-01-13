@@ -20,7 +20,7 @@
 */
 
 #include <string.h>
-#include "address.h"
+#include "hsn.h"
 
 void		address_init(t_address *address)
 {
