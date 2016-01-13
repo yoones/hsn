@@ -23,6 +23,7 @@
 # define SSH_SERVER_H_
 
 # include <libssh/libssh.h>
+# include <libssh/server.h>
 # include "address.h"
 
 typedef struct		s_ssh_server
