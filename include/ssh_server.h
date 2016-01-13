@@ -28,6 +28,7 @@
 typedef struct		s_ssh_server
 {
   int			port;
+  ssh_bind		sshbind;
   ssh_session		session;
 }			t_ssh_server;
 

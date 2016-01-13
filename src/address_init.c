@@ -19,14 +19,10 @@
 ** or see <http://www.gnu.org/licenses/>.
 */
 
-#include <stdlib.h>
-#include <stdio.h>
+#include <string.h>
 #include "address.h"
-#include "tools.h"
-#include "hsn_node.h"
 
 void		address_init(t_address *address)
 {
-  address->addr = NULL;
-  address->port = -1;
+  memset(address, 0, sizeof(t_address));
 }

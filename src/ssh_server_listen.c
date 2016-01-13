@@ -23,11 +23,10 @@
 #include <stdio.h>
 #include "ssh_server.h"
 #include "tools.h"
+#include "address.h"
 
-void		ssh_server_clean(t_ssh_server *ssh_server)
+int		ssh_server_listen(t_ssh_server *ssh_server)
 {
-  ssh_disconnect(ssh_server->session);
-  ssh_free(ssh_server->session);
-  ssh_bind_free(ssh_server->sshbind);
-  ssh_server_init(ssh_server);
+  /* TODO */
+  return (1);
 }

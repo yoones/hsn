@@ -19,16 +19,16 @@
 ** or see <http://www.gnu.org/licenses/>.
 */
 
-#include <stdlib.h>
-#include <stdio.h>
+#include <string.h>
 #include "peer.h"
-#include "tools.h"
+#include "credentials.h"
+#include "list.h"
 #include "address.h"
+#include "ssh_client.h"
 
 int		peer_init(t_peer *peer)
 {
-  peer->uid = NULL;
-  peer->name = NULL;
+  memset(peer, 0, sizeof(t_peer));
   credentials_init(&(peer->credentials));
   list_init(&(peer->addresses), (t_list_data_free *)address_free, NULL);
   if (ssh_client_init(&(peer->ssh_client)) != 0)

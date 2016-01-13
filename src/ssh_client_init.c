@@ -19,15 +19,15 @@
 ** or see <http://www.gnu.org/licenses/>.
 */
 
-#include <stdlib.h>
-#include <stdio.h>
+#include <string.h>
+#include <libssh/libssh.h>
 #include "ssh_client.h"
-#include "tools.h"
+#include "credentials.h"
 #include "address.h"
 
 int		ssh_client_init(t_ssh_client *ssh_client)
 {
-  ssh_client->address = NULL;
+  memset(ssh_client, 0, sizeof(t_ssh_client));
   credentials_init(&(ssh_client->credentials));
   ssh_client->session = ssh_new();
   if (ssh_client->session == NULL)
