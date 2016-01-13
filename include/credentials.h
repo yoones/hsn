@@ -30,6 +30,8 @@ typedef struct	s_credentials
   ssh_key	private_key;
   unsigned char	*public_key_hash;
   size_t	public_key_hash_len;
+  char		*public_key_filepath;
+  char		*private_key_filepath;
 }		t_credentials;
 
 void		credentials_init(t_credentials *credentials);

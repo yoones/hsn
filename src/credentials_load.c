@@ -34,6 +34,9 @@ static int	_import_private_key(t_credentials *credentials,
 				    const char *password)
 {
   sprintf(buf, "%s/id_rsa", credentials_dirpath);
+  credentials->private_key_filepath = xstrdup(buf);
+  if (!credentials->private_key_filepath)
+    return (1);
   if (access(buf, R_OK) != 0)
     {
       fprintf(stderr, "Failed to access private key (%s)\n", strerror(errno));
@@ -56,6 +59,9 @@ static int	_import_public_key(t_credentials *credentials,
 				   char *buf)
 {
   sprintf(buf, "%s/id_rsa.pub", credentials_dirpath);
+  credentials->public_key_filepath = xstrdup(buf);
+  if (!credentials->public_key_filepath)
+    return (1);
   if (access(buf, R_OK) != 0)
     {
       fprintf(stderr, "Failed to access public key (%s)\n", strerror(errno));
@@ -64,7 +70,6 @@ static int	_import_public_key(t_credentials *credentials,
   if (ssh_pki_import_pubkey_file(buf, &(credentials->public_key)) != SSH_OK)
     {
       fprintf(stderr, "Failed to import public key\n");
-      ssh_key_free(credentials->public_key);
       return (1);
     }
   if (ssh_get_publickey_hash(credentials->public_key,
@@ -73,7 +78,6 @@ static int	_import_public_key(t_credentials *credentials,
 			     &(credentials->public_key_hash_len)) != 0)
     {
       fprintf(stderr, "Failed to get public key hash\n");
-      ssh_key_free(credentials->public_key);
       return (1);
     }
   return (0);
@@ -109,20 +113,17 @@ int		credentials_load(t_credentials *credentials,
 			     credentials_dirpath,
 			     buf,
 			     password) != 0)
-    {
-      memset(buf, 0, buf_length);
-      free(buf);
-      return (1);
-    }
+    goto err;
   if ((mode & CREDENTIALS_LOAD_PUBLIC_KEY) != 0
       && _import_public_key(credentials, credentials_dirpath, buf) != 0)
-    {
-      credentials_clean(credentials);
-      memset(buf, 0, buf_length);
-      free(buf);
-      return (1);
-    }
+    goto err;
   memset(buf, 0, buf_length);
   free(buf);
   return (0);
+
+ err:
+  credentials_clean(credentials);
+  memset(buf, 0, buf_length);
+  free(buf);
+  return (1);
 }
