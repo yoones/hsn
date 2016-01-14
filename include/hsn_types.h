@@ -45,7 +45,7 @@ typedef struct		s_credentials
 typedef struct		s_ssh_client
 {
   t_address		*address;
-  t_credentials		credentials;
+  t_credentials		*credentials;
   ssh_session		session;
 }			t_ssh_client;
 

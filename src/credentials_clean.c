@@ -43,4 +43,5 @@ void		credentials_clean(t_credentials *credentials)
       memset(credentials->private_key_filepath, 0, i);
       free(credentials->private_key_filepath);
     }
+  credentials_init(credentials);
 }

@@ -44,30 +44,28 @@ static int	_authenticate_self(t_peer *peer)
 
 static int	_check_peer_credentials(t_peer *peer)
 {
+  t_credentials	credentials;
+
+  credentials_init(&credentials);
   if (ssh_get_publickey(peer->ssh_client.session,
-			&(peer->ssh_client.credentials.public_key)) != SSH_OK)
+			&(credentials.public_key)) != SSH_OK)
     {
       fprintf(stderr, "Failed to get peer's public key\n");
-      return (1);
-    }
-  if (ssh_get_publickey_hash(peer->ssh_client.credentials.public_key,
-			     SSH_PUBLICKEY_HASH_SHA1,
-			     &(peer->ssh_client.credentials.public_key_hash),
-			     &(peer->ssh_client.credentials.public_key_hash_len)) != 0)
-    {
-      fprintf(stderr, "Failed to get peer's public key hash\n");
-      credentials_clean(&(peer->ssh_client.credentials));
-      return (1);
+      goto err;
     }
   if (ssh_key_cmp(peer->credentials.public_key,
-		  peer->ssh_client.credentials.public_key,
+		  credentials.public_key,
 		  SSH_KEY_CMP_PUBLIC) != 0)
     {
       fprintf(stderr, "Peer's public key doesn't match\n");
-      credentials_clean(&(peer->ssh_client.credentials));
-      return (1);
+      goto err;
     }
+  credentials_clean(&credentials);
   return (0);
+
+ err:
+  credentials_clean(&credentials);
+  return (1);
 }
 
 int		ssh_client_connect(t_peer *peer,
@@ -91,10 +89,10 @@ int		ssh_client_connect(t_peer *peer,
   if (_authenticate_self(peer) != 0)
     {
       fprintf(stderr, "Warning: failed to authenticate\n");
-      credentials_clean(&(peer->ssh_client.credentials));
       ssh_disconnect(peer->ssh_client.session);
       return (1);
     }
   peer->ssh_client.address = address;
+  peer->ssh_client.credentials = &(peer->credentials);
   return (0);
 }
