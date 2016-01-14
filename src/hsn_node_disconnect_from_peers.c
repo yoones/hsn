@@ -26,28 +26,8 @@
 int		hsn_node_disconnect_from_peers(t_hsn_node *node)
 {
   t_lnode	*w;
-  t_peer	*peer;
-  t_lnode	*waddr;
-  t_address	*address;
 
   for (w = node->peers.head; w; w = w->next)
-    {
-      peer = w->data;
-      /* Skip peer if not fully loaded/ready */
-      if (peer->credentials.public_key == NULL
-	  || peer->credentials.public_key_hash == NULL)
-	continue ;
-      /* Skip peer if already connected */
-      if (peer->ssh_client.address != NULL)
-	continue ;
-      for (waddr = peer->addresses.head; waddr; waddr = waddr->next)
-	{
-	  address = waddr->data;
-	  if (ssh_client_connect(peer,
-				 address,
-				 &(node->ssh_verbosity)) == 0)
-	    break ;
-	}
-    }
+    ssh_client_disconnect((t_peer *)w->data);
   return (0);
 }

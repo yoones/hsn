@@ -19,18 +19,14 @@
 ** or see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef SSH_CLIENT_H_
-# define SSH_CLIENT_H_
+#include <stdlib.h>
+#include <stdio.h>
+#include <libssh/libssh.h>
+#include "hsn.h"
 
-# include "hsn_types.h"
-
-int		ssh_client_init(t_ssh_client *ssh_client);
-t_ssh_client	*ssh_client_alloc();
-void		ssh_client_clean(t_ssh_client *ssh_client);
-void		ssh_client_free(t_ssh_client *ssh_client);
-int		ssh_client_connect(t_peer *peer,
-				   t_address *address,
-				   int *verbosity);
-int		ssh_client_disconnect(t_peer *peer);
-
-#endif
+int		ssh_client_disconnect(t_peer *peer)
+{
+  if (ssh_is_connected(peer->ssh_client.session) == 1)
+    ssh_disconnect(peer->ssh_client.session);
+  return (0);
+}
