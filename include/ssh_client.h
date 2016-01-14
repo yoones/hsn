@@ -25,9 +25,7 @@
 # include "hsn_types.h"
 
 int		ssh_client_init(t_ssh_client *ssh_client);
-t_ssh_client	*ssh_client_alloc();
-void		ssh_client_clean(t_ssh_client *ssh_client);
-void		ssh_client_free(t_ssh_client *ssh_client);
+void		ssh_client_clean(t_peer *peer);
 int		ssh_client_connect(t_peer *peer,
 				   t_address *address,
 				   int *verbosity);

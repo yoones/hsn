@@ -25,9 +25,7 @@
 # include "hsn_types.h"
 
 int		ssh_server_init(t_ssh_server *ssh_server);
-t_ssh_server	*ssh_server_alloc();
 void		ssh_server_clean(t_ssh_server *ssh_server);
-void		ssh_server_free(t_ssh_server *ssh_server);
 int		ssh_server_start(t_hsn_node *hsn_node);
 int		ssh_server_stop(t_hsn_node *hsn_node);
 
