@@ -48,6 +48,6 @@ void		hsn_node_print_status(t_hsn_node *hsn_node)
 	  HSN_DEFAULT_PORT,
 	  hsn_node->peers.size,
 	  nb_peers_connexions,
-	  (ssh_bind_get_fd(hsn_node->ssh_server.sshbind) != -1 ? "yes" : "no")
+	  (ssh_bind_get_fd(hsn_node->ssh_server.sshbind) == SSH_INVALID_SOCKET ? "no" : "yes")
 	  );
 }
