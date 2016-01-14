@@ -1,0 +1,2 @@
+- accept / handle new clients using ssh_poll_*
+- Add events logging
