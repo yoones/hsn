@@ -19,6 +19,7 @@
 ** or see <http://www.gnu.org/licenses/>.
 */
 
+#include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include "hsn.h"
@@ -26,5 +27,5 @@
 void		address_clean(t_address *address)
 {
   free(address->addr);
-  address_init(address);
+  memset(address, 0, sizeof(t_address));
 }

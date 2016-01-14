@@ -19,13 +19,14 @@
 ** or see <http://www.gnu.org/licenses/>.
 */
 
+#include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include "hsn.h"
 
-void		ssh_client_clean(t_ssh_client *ssh_client)
+void		ssh_client_clean(t_peer *peer)
 {
-  ssh_disconnect(ssh_client->session);
-  ssh_free(ssh_client->session);
-  ssh_client_init(ssh_client);
+  ssh_client_disconnect(peer);
+  ssh_free(peer->ssh_client.session);
+  memset(&(peer->ssh_client), 0, sizeof(t_ssh_client));
 }

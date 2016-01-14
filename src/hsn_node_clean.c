@@ -19,6 +19,7 @@
 ** or see <http://www.gnu.org/licenses/>.
 */
 
+#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include "hsn.h"
@@ -27,6 +28,6 @@ void		hsn_node_clean(t_hsn_node *node)
 {
   credentials_clean(&(node->credentials));
   list_clear(&(node->peers));
-  /* ssh_server_clean(&(node->ssh_server)); */
-  hsn_node_init(node);
+  ssh_server_clean(node);
+  memset(node, 0, sizeof(t_hsn_node));
 }

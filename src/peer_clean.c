@@ -19,6 +19,7 @@
 ** or see <http://www.gnu.org/licenses/>.
 */
 
+#include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include "hsn.h"
@@ -29,6 +30,6 @@ void		peer_clean(t_peer *peer)
   free(peer->name);
   credentials_clean(&(peer->credentials));
   list_clear(&(peer->addresses));
-  /* ssh_client_clean(); */
-  peer_init(peer);
+  ssh_client_clean(peer);
+  memset(peer, 0, sizeof(t_peer));
 }
