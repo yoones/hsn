@@ -21,6 +21,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include "hsn.h"
 
 int		main()
@@ -37,9 +38,10 @@ int		main()
       fprintf(stderr, "Failed to setup a HSN node. Aborting.\n");
       return (EXIT_FAILURE);
     }
-  fprintf(stderr, "HSN node successfully setup.\n\n");
   hsn_node_print_status(&hsn_node);
-  fprintf(stderr, "\n");
+
+  sleep(3);
+
   hsn_node_clean(&hsn_node);
   ssh_finalize();
   fprintf(stderr, "Goodbye\n");

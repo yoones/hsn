@@ -37,18 +37,17 @@ void		hsn_node_print_status(t_hsn_node *hsn_node)
 	nb_peers_connexions++;
     }
   fprintf(stderr,
-	  "[HSN node status]\n"
-	  "| pid   : % 6d\n"
-	  "| port  : % 6d\n"
-	  "| peers : % 6d\n"
-	  "|\n"
-	  "| connected to %d peers\n"
-	  /* "| server running : %s\n" */
-	  "+---\n",
+	  "HSN node status:\n"
+	  "* pid: %d\n"
+	  "* port: %d\n"
+	  "* peers: %d\n"
+	  "* connected to %d peers\n"
+	  "* server started: %s\n"
+	  "\n",
 	  getpid(),
 	  HSN_DEFAULT_PORT,
 	  hsn_node->peers.size,
-	  nb_peers_connexions
-	  /* (hsn_node->ssh_server.session != NULL ? "yes" : "no") */
+	  nb_peers_connexions,
+	  (ssh_bind_get_fd(hsn_node->ssh_server.sshbind) != -1 ? "yes" : "no")
 	  );
 }

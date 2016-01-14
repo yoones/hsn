@@ -28,15 +28,21 @@ int		hsn_node_setup(t_hsn_node *node,
 			       const char *peers_dirpath,
 			       int port)
 {
+  fprintf(stderr, "HSN node setup:\n");
+  fprintf(stderr, "* Loading credentials...\n");
   if (hsn_node_load_credentials(node, credentials_dirpath) != 0)
     goto err_load_credentials;
+  fprintf(stderr, "* Loading peers...\n");
   if (hsn_node_load_peers(node, peers_list_filepath, peers_dirpath) != 0)
     goto err_load_peers;
+  fprintf(stderr, "* Connecting to peers...\n");
   if (hsn_node_connect_to_peers(node) != 0)
     goto err_connect_to_peers;
+  fprintf(stderr, "* Starting server...\n");
   node->ssh_server.port = port;
   if (ssh_server_start(node) != 0)
     goto err_start_server;
+  fprintf(stderr, "done.\n\n");
   return (0);
 
  err_start_server:

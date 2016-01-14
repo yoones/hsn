@@ -25,6 +25,6 @@
 
 int		ssh_server_stop(t_hsn_node *hsn_node)
 {
-  /* TODO */
-  return (1);
+  ssh_disconnect(hsn_node->ssh_server.session);
+  return (0);
 }
