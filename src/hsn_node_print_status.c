@@ -33,7 +33,7 @@ void		hsn_node_print_status(t_hsn_node *hsn_node)
   for (w = hsn_node->peers.head; w; w = w->next)
     {
       peer = w->data;
-      if (peer->ssh_client.address)
+      if (peer->connexion.address)
 	nb_peers_connexions++;
     }
   fprintf(stderr,
@@ -48,6 +48,6 @@ void		hsn_node_print_status(t_hsn_node *hsn_node)
 	  HSN_DEFAULT_PORT,
 	  hsn_node->peers.size,
 	  nb_peers_connexions,
-	  (ssh_bind_get_fd(hsn_node->ssh_server.sshbind) == SSH_INVALID_SOCKET ? "no" : "yes")
+	  (ssh_bind_get_fd(hsn_node->server.sshbind) == SSH_INVALID_SOCKET ? "no" : "yes")
 	  );
 }

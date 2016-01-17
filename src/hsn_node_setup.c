@@ -39,8 +39,8 @@ int		hsn_node_setup(t_hsn_node *node,
   if (hsn_node_connect_to_peers(node) != 0)
     goto err_connect_to_peers;
   fprintf(stderr, "* Starting server...\n");
-  node->ssh_server.port = port;
-  if (ssh_server_start(node) != 0)
+  node->server.port = port;
+  if (server_start(node) != 0)
     goto err_start_server;
   fprintf(stderr, "done.\n\n");
   return (0);

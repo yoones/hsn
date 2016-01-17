@@ -28,5 +28,5 @@ void		hsn_node_init(t_hsn_node *node)
   credentials_init(&(node->credentials));
   list_init(&(node->peers), (t_list_data_free *)peer_free, NULL);
   node->ssh_verbosity = HSN_DEFAULT_SSH_VERBOSITY;
-  ssh_server_init(&(node->ssh_server));
+  server_init(&(node->server));
 }

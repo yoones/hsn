@@ -27,7 +27,7 @@ int		peer_init(t_peer *peer)
   memset(peer, 0, sizeof(t_peer));
   credentials_init(&(peer->credentials));
   list_init(&(peer->addresses), (t_list_data_free *)address_free, NULL);
-  if (ssh_client_init(&(peer->ssh_client)) != 0)
+  if (connexion_init(&(peer->connexion)) != 0)
     return (1);
   return (0);
 }

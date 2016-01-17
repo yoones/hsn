@@ -23,8 +23,27 @@
 #include <stdio.h>
 #include "hsn.h"
 
-int		ssh_server_stop(t_hsn_node *hsn_node)
+int		server_start(t_hsn_node *hsn_node)
 {
-  ssh_disconnect(hsn_node->ssh_server.session);
+  if (ssh_bind_options_set(hsn_node->server.sshbind,
+			   SSH_BIND_OPTIONS_RSAKEY,
+			   hsn_node->credentials.private_key_filepath) != 0
+      || ssh_bind_options_set(hsn_node->server.sshbind,
+			      SSH_BIND_OPTIONS_LOG_VERBOSITY,
+			      &(hsn_node->ssh_verbosity)) != 0
+      || ssh_bind_options_set(hsn_node->server.sshbind,
+			      SSH_BIND_OPTIONS_BINDPORT,
+			      &(hsn_node->server.port)) != 0)
+    {
+      fprintf(stderr, "Bind options set failed (%s)\n",
+	      ssh_get_error(hsn_node->server.sshbind));
+      return (1);
+    }
+  if (ssh_bind_listen(hsn_node->server.sshbind) != 0)
+    {
+      fprintf(stderr, "Bind listen failed (%s)\n",
+	      ssh_get_error(hsn_node->server.sshbind));
+      return (1);
+    }
   return (0);
 }

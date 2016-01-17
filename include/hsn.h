@@ -28,8 +28,8 @@
 # include "hsn_node.h"
 # include "list.h"
 # include "peer.h"
-# include "ssh_client.h"
-# include "ssh_server.h"
+# include "connexion.h"
+# include "server.h"
 # include "tools.h"
 # include "xfunctions.h"
 

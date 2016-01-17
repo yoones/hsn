@@ -21,12 +21,10 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include <libssh/libssh.h>
 #include "hsn.h"
 
-int		ssh_client_disconnect(t_peer *peer)
+int		server_stop(t_hsn_node *hsn_node)
 {
-  if (ssh_is_connected(peer->ssh_client.session) == 1)
-    ssh_disconnect(peer->ssh_client.session);
+  /* TODO: server_stop */
   return (0);
 }

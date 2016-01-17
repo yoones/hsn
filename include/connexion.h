@@ -19,15 +19,16 @@
 ** or see <http://www.gnu.org/licenses/>.
 */
 
-#include <string.h>
-#include <libssh/libssh.h>
-#include <libssh/server.h>
-#include "hsn.h"
+#ifndef CONNEXION_H_
+# define CONNEXION_H_
 
-void		ssh_server_clean(t_hsn_node *node)
-{
-  ssh_server_stop(node);
-  ssh_free(node->ssh_server.session);
-  ssh_bind_free(node->ssh_server.sshbind);
-  memset(&(node->ssh_server), 0, sizeof(t_ssh_server));
-}
+# include "hsn_types.h"
+
+int		connexion_init(t_connexion *connexion);
+void		connexion_clean(t_peer *peer);
+int		connexion_connect(t_peer *peer,
+				  t_address *address,
+				  int *verbosity);
+int		connexion_disconnect(t_peer *peer);
+
+#endif

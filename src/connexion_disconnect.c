@@ -19,14 +19,14 @@
 ** or see <http://www.gnu.org/licenses/>.
 */
 
-#include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <libssh/libssh.h>
 #include "hsn.h"
 
-void		ssh_client_clean(t_peer *peer)
+int		connexion_disconnect(t_peer *peer)
 {
-  ssh_client_disconnect(peer);
-  ssh_free(peer->ssh_client.session);
-  memset(&(peer->ssh_client), 0, sizeof(t_ssh_client));
+  if (ssh_is_connected(peer->connexion.session) == 1)
+    ssh_disconnect(peer->connexion.session);
+  return (0);
 }

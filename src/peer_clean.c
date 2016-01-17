@@ -30,6 +30,6 @@ void		peer_clean(t_peer *peer)
   free(peer->name);
   credentials_clean(&(peer->credentials));
   list_clear(&(peer->addresses));
-  ssh_client_clean(peer);
+  connexion_clean(peer);
   memset(peer, 0, sizeof(t_peer));
 }

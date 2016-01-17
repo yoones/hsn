@@ -26,13 +26,13 @@
 
 static int	_authenticate_self(t_peer *peer)
 {
-  if ((ssh_userauth_list(peer->ssh_client.session, NULL)
+  if ((ssh_userauth_list(peer->connexion.session, NULL)
        & SSH_AUTH_METHOD_PUBLICKEY) == 0)
     {
       fprintf(stderr, "Peer doesn't accept public key authentication\n");
       return (1);
     }
-  if (ssh_userauth_publickey(peer->ssh_client.session,
+  if (ssh_userauth_publickey(peer->connexion.session,
 			     NULL,
 			     peer->credentials.private_key) != SSH_AUTH_SUCCESS)
     {
@@ -47,7 +47,7 @@ static int	_check_peer_credentials(t_peer *peer)
   t_credentials	credentials;
 
   credentials_init(&credentials);
-  if (ssh_get_publickey(peer->ssh_client.session,
+  if (ssh_get_publickey(peer->connexion.session,
 			&(credentials.public_key)) != SSH_OK)
     {
       fprintf(stderr, "Failed to get peer's public key\n");
@@ -68,31 +68,31 @@ static int	_check_peer_credentials(t_peer *peer)
   return (1);
 }
 
-int		ssh_client_connect(t_peer *peer,
+int		connexion_connect(t_peer *peer,
 				   t_address *address,
 				   int *verbosity)
 {
-  if (peer->ssh_client.session == NULL
-      || peer->ssh_client.address != NULL)
+  if (peer->connexion.session == NULL
+      || peer->connexion.address != NULL)
     return (1);
-  ssh_options_set(peer->ssh_client.session, SSH_OPTIONS_HOST, address->addr);
-  ssh_options_set(peer->ssh_client.session, SSH_OPTIONS_PORT, &(address->port));
-  ssh_options_set(peer->ssh_client.session, SSH_OPTIONS_LOG_VERBOSITY, verbosity);
-  if (ssh_connect(peer->ssh_client.session) != SSH_OK)
+  ssh_options_set(peer->connexion.session, SSH_OPTIONS_HOST, address->addr);
+  ssh_options_set(peer->connexion.session, SSH_OPTIONS_PORT, &(address->port));
+  ssh_options_set(peer->connexion.session, SSH_OPTIONS_LOG_VERBOSITY, verbosity);
+  if (ssh_connect(peer->connexion.session) != SSH_OK)
     return (-1);
   if (_check_peer_credentials(peer) != 0)
     {
       fprintf(stderr, "Warning: failed to check peer's credentials\n");
-      ssh_disconnect(peer->ssh_client.session);
+      ssh_disconnect(peer->connexion.session);
       return (1);
     }
   if (_authenticate_self(peer) != 0)
     {
       fprintf(stderr, "Warning: failed to authenticate\n");
-      ssh_disconnect(peer->ssh_client.session);
+      ssh_disconnect(peer->connexion.session);
       return (1);
     }
-  peer->ssh_client.address = address;
-  peer->ssh_client.credentials = &(peer->credentials);
+  peer->connexion.address = address;
+  peer->connexion.credentials = &(peer->credentials);
   return (0);
 }

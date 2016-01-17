@@ -52,14 +52,14 @@ SRCS		=	\
 			peer_free.c				\
 			peer_init.c				\
 			peer_load_credentials.c			\
-			ssh_client_clean.c			\
-			ssh_client_init.c			\
-			ssh_client_connect.c			\
-			ssh_client_disconnect.c			\
-			ssh_server_clean.c			\
-			ssh_server_init.c			\
-			ssh_server_start.c			\
-			ssh_server_stop.c			\
+			connexion_clean.c			\
+			connexion_init.c			\
+			connexion_connect.c			\
+			connexion_disconnect.c			\
+			server_clean.c				\
+			server_init.c				\
+			server_start.c				\
+			server_stop.c				\
 			tools/split.c				\
 			tools/read_file.c			\
 			tools/list.c				\

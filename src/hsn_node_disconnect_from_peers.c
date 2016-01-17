@@ -28,6 +28,6 @@ int		hsn_node_disconnect_from_peers(t_hsn_node *node)
   t_lnode	*w;
 
   for (w = node->peers.head; w; w = w->next)
-    ssh_client_disconnect((t_peer *)w->data);
+    connexion_disconnect((t_peer *)w->data);
   return (0);
 }

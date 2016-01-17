@@ -23,11 +23,11 @@
 #include <libssh/libssh.h>
 #include "hsn.h"
 
-int		ssh_client_init(t_ssh_client *ssh_client)
+int		connexion_init(t_connexion *connexion)
 {
-  memset(ssh_client, 0, sizeof(t_ssh_client));
-  ssh_client->session = ssh_new();
-  if (ssh_client->session == NULL)
+  memset(connexion, 0, sizeof(t_connexion));
+  connexion->session = ssh_new();
+  if (connexion->session == NULL)
     return (1);
   return (0);
 }

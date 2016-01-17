@@ -42,25 +42,30 @@ typedef struct		s_credentials
   char			*private_key_filepath;
 }			t_credentials;
 
-typedef struct		s_ssh_client
+typedef enum		e_connexion_origin {
+  INITIATED_BY_SELF = 1,
+  INITIATED_BY_PEER
+}			t_connexion_origin;
+
+typedef struct		s_connexion
 {
   t_address		*address;
   t_credentials		*credentials;
   ssh_session		session;
-}			t_ssh_client;
+  t_connexion_origin	connexion_origin;
+}			t_connexion;
 
-typedef struct		s_ssh_server
+typedef struct		s_server
 {
   int			port;
   ssh_bind		sshbind;
-  ssh_session		session;
-}			t_ssh_server;
+}			t_server;
 
 typedef struct		s_hsn_node
 {
   t_credentials		credentials;
   t_list		peers;
-  t_ssh_server		ssh_server;
+  t_server		server;
   int			ssh_verbosity;
 }			t_hsn_node;
 
@@ -70,7 +75,7 @@ typedef struct		s_peer
   char			*name;
   t_credentials		credentials;
   t_list		addresses;
-  t_ssh_client		ssh_client;
+  t_connexion		connexion;
 }			t_peer;
 
 #endif

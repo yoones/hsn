@@ -19,14 +19,17 @@
 ** or see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef SSH_SERVER_H_
-# define SSH_SERVER_H_
+#include <string.h>
+#include <libssh/libssh.h>
+#include <libssh/server.h>
+#include "hsn.h"
 
-# include "hsn_types.h"
-
-int		ssh_server_init(t_ssh_server *ssh_server);
-void		ssh_server_clean(t_hsn_node *hsn_node);
-int		ssh_server_start(t_hsn_node *hsn_node);
-int		ssh_server_stop(t_hsn_node *hsn_node);
-
-#endif
+int		server_init(t_server *server)
+{
+  memset(server, 0, sizeof(t_server));
+  server->port = HSN_DEFAULT_PORT;
+  server->sshbind = ssh_bind_new();
+  if (server->sshbind == NULL)
+    return (1);
+  return (0);
+}

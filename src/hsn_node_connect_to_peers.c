@@ -38,12 +38,12 @@ int		hsn_node_connect_to_peers(t_hsn_node *node)
 	  || peer->credentials.public_key_hash == NULL)
 	continue ;
       /* Skip peer if already connected */
-      if (peer->ssh_client.address != NULL)
+      if (peer->connexion.address != NULL)
 	continue ;
       for (waddr = peer->addresses.head; waddr; waddr = waddr->next)
 	{
 	  address = waddr->data;
-	  if (ssh_client_connect(peer,
+	  if (connexion_connect(peer,
 				 address,
 				 &(node->ssh_verbosity)) == 0)
 	    break ;
