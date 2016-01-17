@@ -1,8 +1,3 @@
-- Revise the ssh_client structure so that it can be used whether the
-   local user initiated the connexion or not.
-   -> rename: ssh_client -> ssh_connexion
-   -> add info about who initiated the connexion
-   -> make address a new memory address so that it'll be always freed
 - accept / handle new clients using ssh_event_* (ssh_poll is internal,
    shall not be used by end user)
 - Add events logging
