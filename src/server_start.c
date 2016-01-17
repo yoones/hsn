@@ -37,13 +37,19 @@ int		server_start(t_hsn_node *hsn_node)
     {
       fprintf(stderr, "Bind options set failed (%s)\n",
 	      ssh_get_error(hsn_node->server.sshbind));
-      return (1);
+      goto err;
     }
   if (ssh_bind_listen(hsn_node->server.sshbind) != 0)
     {
       fprintf(stderr, "Bind listen failed (%s)\n",
 	      ssh_get_error(hsn_node->server.sshbind));
-      return (1);
+      goto err;
     }
   return (0);
+
+ err:
+  /* Reset server so that the server's private key is cleared from memory */
+  server_clean(hsn_node);
+  server_init(&(hsn_node->server));
+  return (1);
 }

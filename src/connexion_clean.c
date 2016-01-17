@@ -27,6 +27,7 @@
 void		connexion_clean(t_peer *peer)
 {
   connexion_disconnect(peer);
+  address_clean(&(peer->connexion.address));
   ssh_free(peer->connexion.session);
   memset(&(peer->connexion), 0, sizeof(t_connexion));
 }

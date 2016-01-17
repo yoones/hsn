@@ -33,7 +33,7 @@ void		hsn_node_print_status(t_hsn_node *hsn_node)
   for (w = hsn_node->peers.head; w; w = w->next)
     {
       peer = w->data;
-      if (peer->connexion.address)
+      if (peer->connexion.connexion_origin != NOT_CONNECTED)
 	nb_peers_connexions++;
     }
   fprintf(stderr,

@@ -28,7 +28,6 @@ int		hsn_node_connect_to_peers(t_hsn_node *node)
   t_lnode	*w;
   t_peer	*peer;
   t_lnode	*waddr;
-  t_address	*address;
 
   for (w = node->peers.head; w; w = w->next)
     {
@@ -37,15 +36,13 @@ int		hsn_node_connect_to_peers(t_hsn_node *node)
       if (peer->credentials.public_key == NULL
 	  || peer->credentials.public_key_hash == NULL)
 	continue ;
-      /* Skip peer if already connected */
-      if (peer->connexion.address != NULL)
+      if (peer->connexion.connexion_origin != NOT_CONNECTED)
 	continue ;
       for (waddr = peer->addresses.head; waddr; waddr = waddr->next)
 	{
-	  address = waddr->data;
 	  if (connexion_connect(peer,
-				 address,
-				 &(node->ssh_verbosity)) == 0)
+				waddr->data,
+				&(node->ssh_verbosity)) == 0)
 	    break ;
 	}
     }

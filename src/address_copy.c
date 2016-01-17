@@ -19,16 +19,16 @@
 ** or see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef ADDRESS_H_
-# define ADDRESS_H_
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include "hsn.h"
 
-# include "hsn_types.h"
-
-void		address_init(t_address *address);
-t_address	*address_alloc();
-int		address_copy(t_address *dest, t_address *src);
-void		address_clean(t_address *address);
-void		address_free(t_address *address);
-int		address_fill(t_address *address, const char *source); /* source = "addr:port" */
-
-#endif
+int		address_copy(t_address *dest, t_address *src)
+{
+  dest->addr = xstrdup(src->addr);
+  if (!dest->addr)
+    return (1);
+  dest->port = src->port;
+  return (0);
+}

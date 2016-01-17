@@ -25,6 +25,7 @@ NAME		=	hsn
 SRCS		=	\
 			address_alloc.c				\
 			address_clean.c				\
+			address_copy.c				\
 			address_fill.c				\
 			address_free.c				\
 			address_init.c				\

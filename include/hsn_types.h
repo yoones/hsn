@@ -43,14 +43,15 @@ typedef struct		s_credentials
 }			t_credentials;
 
 typedef enum		e_connexion_origin {
-  INITIATED_BY_SELF = 1,
+  NOT_CONNECTED,
+  INITIATED_BY_SELF,
   INITIATED_BY_PEER
 }			t_connexion_origin;
 
 typedef struct		s_connexion
 {
-  t_address		*address;
-  t_credentials		*credentials;
+  t_address		address;
+  t_credentials		*credentials; /* shall not be freed to avoid double-free */
   ssh_session		session;
   t_connexion_origin	connexion_origin;
 }			t_connexion;

@@ -28,5 +28,6 @@ int		connexion_disconnect(t_peer *peer)
 {
   if (ssh_is_connected(peer->connexion.session) == 1)
     ssh_disconnect(peer->connexion.session);
+  peer->connexion.connexion_origin = NOT_CONNECTED;
   return (0);
 }

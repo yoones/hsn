@@ -26,8 +26,10 @@
 int		connexion_init(t_connexion *connexion)
 {
   memset(connexion, 0, sizeof(t_connexion));
+  address_init(&(connexion->address));
   connexion->session = ssh_new();
   if (connexion->session == NULL)
     return (1);
+  connexion->connexion_origin = NOT_CONNECTED;
   return (0);
 }

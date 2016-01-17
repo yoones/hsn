@@ -44,27 +44,27 @@ static int	_authenticate_self(t_peer *peer)
 
 static int	_check_peer_credentials(t_peer *peer)
 {
-  t_credentials	credentials;
+  t_credentials	tmp_credentials;
 
-  credentials_init(&credentials);
+  credentials_init(&tmp_credentials);
   if (ssh_get_publickey(peer->connexion.session,
-			&(credentials.public_key)) != SSH_OK)
+			&(tmp_credentials.public_key)) != SSH_OK)
     {
       fprintf(stderr, "Failed to get peer's public key\n");
       goto err;
     }
   if (ssh_key_cmp(peer->credentials.public_key,
-		  credentials.public_key,
+		  tmp_credentials.public_key,
 		  SSH_KEY_CMP_PUBLIC) != 0)
     {
       fprintf(stderr, "Peer's public key doesn't match\n");
       goto err;
     }
-  credentials_clean(&credentials);
+  credentials_clean(&tmp_credentials);
   return (0);
 
  err:
-  credentials_clean(&credentials);
+  credentials_clean(&tmp_credentials);
   return (1);
 }
 
@@ -73,7 +73,7 @@ int		connexion_connect(t_peer *peer,
 				   int *verbosity)
 {
   if (peer->connexion.session == NULL
-      || peer->connexion.address != NULL)
+      || peer->connexion.connexion_origin != NOT_CONNECTED)
     return (1);
   ssh_options_set(peer->connexion.session, SSH_OPTIONS_HOST, address->addr);
   ssh_options_set(peer->connexion.session, SSH_OPTIONS_PORT, &(address->port));
@@ -83,16 +83,20 @@ int		connexion_connect(t_peer *peer,
   if (_check_peer_credentials(peer) != 0)
     {
       fprintf(stderr, "Warning: failed to check peer's credentials\n");
-      ssh_disconnect(peer->connexion.session);
-      return (1);
+      goto err;
     }
   if (_authenticate_self(peer) != 0)
     {
       fprintf(stderr, "Warning: failed to authenticate\n");
-      ssh_disconnect(peer->connexion.session);
-      return (1);
+      goto err;
     }
-  peer->connexion.address = address;
+  if (address_copy(&(peer->connexion.address), address) != 0)
+    goto err;
   peer->connexion.credentials = &(peer->credentials);
+  peer->connexion.connexion_origin = INITIATED_BY_SELF;
   return (0);
+
+ err:
+  ssh_disconnect(peer->connexion.session);
+  return (1);
 }
