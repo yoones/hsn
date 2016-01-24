@@ -26,7 +26,8 @@
 
 int		connexion_init(t_connexion *connexion);
 void		connexion_clean(t_peer *peer);
-int		connexion_connect(t_peer *peer,
+int		connexion_connect(t_hsn_node *hsn_node,
+				  t_peer *peer,
 				  t_address *address,
 				  int *verbosity);
 int		connexion_disconnect(t_peer *peer);

@@ -32,19 +32,24 @@ int		hsn_node_connect_to_peers(t_hsn_node *node)
   for (w = node->peers.head; w; w = w->next)
     {
       peer = w->data;
-      /* Skip peer if not fully loaded/ready */
+      printf("\ndebug: peer uid = %s\n", peer->uid);
+      /* Skip peer if not fully loaded/ready or already connected */
       if (peer->credentials.public_key == NULL
-	  || peer->credentials.public_key_hash == NULL)
+	  || peer->connexion.connexion_origin != NOT_CONNECTED)
 	continue ;
-      if (peer->connexion.connexion_origin != NOT_CONNECTED)
-	continue ;
+      printf("debug: trying to connect to one of peer's addresses...\n");
       for (waddr = peer->addresses.head; waddr; waddr = waddr->next)
 	{
-	  if (connexion_connect(peer,
+	  if (connexion_connect(node,
+				peer,
 				waddr->data,
 				&(node->ssh_verbosity)) == 0)
-	    break ;
+	    {
+	      printf("Connected to peer!\n\n");
+	      return (0);
+	    }
 	}
     }
+  printf("Peer not found\n\n");
   return (0);
 }

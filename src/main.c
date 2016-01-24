@@ -24,24 +24,27 @@
 #include <unistd.h>
 #include "hsn.h"
 
-int		main()
+int		main(int argc, char **argv)
 {
   t_hsn_node	hsn_node;
+  int		port;
 
+  port = argc == 2 ? atoi(argv[1]) : HSN_DEFAULT_PORT;
   hsn_node_init(&hsn_node);
   if (hsn_node_setup(&hsn_node,
 		     HSN_DEFAULT_CREDENTIALS_DIRPATH,
 		     HSN_DEFAULT_PEERS_LIST_FILEPATH,
 		     HSN_DEFAULT_PEERS_DIRPATH,
-		     HSN_DEFAULT_PORT) != 0)
+		     port) != 0)
     {
       fprintf(stderr, "Failed to setup a HSN node. Aborting.\n");
       return (EXIT_FAILURE);
     }
   hsn_node_print_status(&hsn_node);
 
-  sleep(3);
-
+  /* sleep(3); */
+  server_loop(&hsn_node);
+  
   hsn_node_clean(&hsn_node);
   ssh_finalize();
   fprintf(stderr, "Goodbye\n");

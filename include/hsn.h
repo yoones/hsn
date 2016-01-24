@@ -22,6 +22,9 @@
 #ifndef HSN_H_
 # define HSN_H_
 
+# define LIBSSH_STATIC 1
+# include <libssh/libssh.h>
+
 # include "hsn_types.h"
 # include "address.h"
 # include "credentials.h"

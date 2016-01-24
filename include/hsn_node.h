@@ -52,6 +52,7 @@ void		hsn_node_print_status(t_hsn_node *hsn_node);
 # define HSN_DEFAULT_CREDENTIALS_DIRPATH	"./data/self/credentials/"
 # define HSN_DEFAULT_PEERS_LIST_FILEPATH	"./data/peers/peers.list"
 # define HSN_DEFAULT_PEERS_DIRPATH		"./data/peers/"
+/* # define HSN_DEFAULT_SSH_VERBOSITY		SSH_LOG_DEBUG */
 # define HSN_DEFAULT_SSH_VERBOSITY		SSH_LOG_NOLOG
 
 #endif

@@ -70,14 +70,6 @@ static int	_import_public_key(t_credentials *credentials,
       fprintf(stderr, "Failed to import public key\n");
       return (1);
     }
-  if (ssh_get_publickey_hash(credentials->public_key,
-			     SSH_PUBLICKEY_HASH_SHA1,
-			     &(credentials->public_key_hash),
-			     &(credentials->public_key_hash_len)) != 0)
-    {
-      fprintf(stderr, "Failed to get public key hash\n");
-      return (1);
-    }
   return (0);
 }
 

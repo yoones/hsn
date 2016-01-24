@@ -59,8 +59,8 @@ SRCS		=	\
 			connexion_disconnect.c			\
 			server_clean.c				\
 			server_init.c				\
+			server_loop.c				\
 			server_start.c				\
-			server_stop.c				\
 			tools/split.c				\
 			tools/read_file.c			\
 			tools/list.c				\
@@ -71,7 +71,7 @@ OBJS		=	$(SRCS:.c=.o)
 
 CFLAGS		+=	--std=c99
 CFLAGS		+=	-W -Wall -Wextra
-CFLAGS		+=	-g
+CFLAGS		+=	-ggdb
 CFLAGS		+=	-I . -I ../include
 
 LDFLAGS		=	-lssh

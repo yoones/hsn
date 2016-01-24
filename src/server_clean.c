@@ -26,7 +26,8 @@
 
 void		server_clean(t_hsn_node *node)
 {
-  server_stop(node);
   ssh_bind_free(node->server.sshbind);
+  ssh_event_free(node->server.events);
+  list_clear(&(node->server.auth_waiting_list));
   memset(&(node->server), 0, sizeof(t_server));
 }

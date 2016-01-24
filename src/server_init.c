@@ -29,7 +29,14 @@ int		server_init(t_server *server)
   memset(server, 0, sizeof(t_server));
   server->port = HSN_DEFAULT_PORT;
   server->sshbind = ssh_bind_new();
-  if (server->sshbind == NULL)
-    return (1);
+  server->events = ssh_event_new();
+  if (server->sshbind == NULL || server->events == NULL)
+    {
+      ssh_bind_free(server->sshbind);
+      ssh_event_free(server->events);
+      return (1);
+    }
+  ssh_callbacks_init(&(server->cb));
+  list_init(&(server->auth_waiting_list), NULL, NULL); /* TODO: add free callback */
   return (0);
 }

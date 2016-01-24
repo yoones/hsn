@@ -1,2 +1,2 @@
-0;elegua;127.0.0.1
-1;oggun;localhost
+0;elegua;127.0.0.1:1234
+1;oggun;localhost:1234

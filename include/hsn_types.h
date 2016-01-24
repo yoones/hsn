@@ -24,6 +24,7 @@
 
 # include <libssh/libssh.h>
 # include <libssh/server.h>
+# include <libssh/callbacks.h>
 # include "list.h"
 
 typedef struct		s_address
@@ -36,8 +37,6 @@ typedef struct		s_credentials
 {
   ssh_key		public_key;
   ssh_key		private_key;
-  unsigned char		*public_key_hash;
-  size_t		public_key_hash_len;
   char			*public_key_filepath;
   char			*private_key_filepath;
 }			t_credentials;
@@ -56,10 +55,15 @@ typedef struct		s_connexion
   t_connexion_origin	connexion_origin;
 }			t_connexion;
 
+typedef struct ssh_server_callbacks_struct t_ssh_serv_callbacks;
+
 typedef struct		s_server
 {
   int			port;
   ssh_bind		sshbind;
+  ssh_event		events;
+  t_ssh_serv_callbacks	cb;
+  t_list		auth_waiting_list;
 }			t_server;
 
 typedef struct		s_hsn_node

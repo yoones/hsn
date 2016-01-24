@@ -27,6 +27,6 @@
 int		server_init(t_server *server);
 void		server_clean(t_hsn_node *hsn_node);
 int		server_start(t_hsn_node *hsn_node);
-int		server_stop(t_hsn_node *hsn_node);
+int		server_loop(t_hsn_node *hsn_node);
 
 #endif

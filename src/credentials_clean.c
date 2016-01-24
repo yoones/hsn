@@ -30,7 +30,6 @@ void		credentials_clean(t_credentials *credentials)
 
   ssh_key_free(credentials->public_key);
   ssh_key_free(credentials->private_key);
-  ssh_clean_pubkey_hash(&(credentials->public_key_hash));
   if (credentials->public_key_filepath)
     {
       i = strlen(credentials->public_key_filepath);
